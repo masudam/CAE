@@ -21,7 +21,6 @@ if gpus:
 class CAE(Model):
     def __init__(self):
         super(CAE,self).__init__()
-        # 使用するブロックを宣言しておく
         self.encoder = tf.keras.Sequential([
             Conv2D(16, 3, strides=(2,2), padding='same', activation=tf.nn.tanh), # 16x16x16
             Conv2D(32, 3, strides=(2,2), padding='same', activation=tf.nn.tanh), # 8x8x32
@@ -44,7 +43,7 @@ class CAE(Model):
 
 
 
-# モデルの途中結果を見て保存する関数
+# generate and save img
 def generate_and_save_images(model, epoch, test_sample):
     predictions, _ = model(test_sample)
     fig = plt.figure(figsize=(4, 4))
@@ -56,7 +55,7 @@ def generate_and_save_images(model, epoch, test_sample):
 
     plt.savefig('./result_tf2/image_at_epoch_{:04d}.png'.format(epoch))
 
-# kerasにあるcifar10のデータセットを用意する関数
+# load cifar10 data in tf.keras.datasets
 def prepare_data(train_size, test_size, batch_size):
     (train_images, _), (test_images, _) = tf.keras.datasets.cifar10.load_data()
     def preprocess_images(images):
@@ -86,7 +85,7 @@ if __name__ == "__main__":
     # prepare data
     train_dataset, test_dataset = prepare_data(train_size, test_size, batch_size)
 
-    # テストデータのサンプル元データの保存
+    # save test sample img
     num_examples_to_generate = 16
     assert batch_size >= num_examples_to_generate
     for test_batch in test_dataset.take(1):
@@ -110,6 +109,7 @@ if __name__ == "__main__":
         loss = tf.reduce_mean(tf.pow(x-x_pred, 2))
         return loss
 
+    # train
     for epoch in range(1, epochs + 1):
         start_time = time.time()
         for train_x in train_dataset:

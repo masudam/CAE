@@ -9,7 +9,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
-# viewをsequentialの中で使えるようにするためモジュールにする
+
+# make tensor.view() Module to use it in Sequential
 class Reshape(nn.Module):
     def __init__(self, *args):
         super(Reshape, self).__init__()
@@ -47,7 +48,7 @@ class CAE(nn.Module):
         x_pred = self.decoder(z)
         return x_pred, z
 
-# モデルの途中結果を見て保存する関数
+# generate and save img
 def generate_and_save_images(pic, epoch):
     fig = plt.figure(figsize=(4, 4))
     for i in range(16):
@@ -59,7 +60,7 @@ def generate_and_save_images(pic, epoch):
     else:
         plt.savefig('./result_torch/image_at_epoch_{:04d}.png'.format(epoch))
 
-
+# load cifar10 data in torchvision.datasets
 def prepare_data(batch_size):
     transform = torchvision.transforms.ToTensor()
     trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
@@ -76,18 +77,19 @@ def prepare_data(batch_size):
     data_loaders = {"train": train_loader, "val": val_loader}
     return data_loaders
 
+
 if __name__ == "__main__":
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     # Training Parameters
     batch_size = 32
-    epochs = 10
+    epochs = 30
     lr = 0.0001
 
     # prepare data
     data_loaders = prepare_data(batch_size)
     for inputs, _ in data_loaders['val']:
         inputs = get_torch_vars(inputs)
-        generate_and_save_images(inputs,0)
+        generate_and_save_images(inputs,0) # save sample img
         break
 
     # create model
@@ -101,6 +103,7 @@ if __name__ == "__main__":
         loss = loss_func(x, x_pred)
         return loss, x_pred
 
+    # train
     for epoch in range(1, epochs+1):
         start_time = time.time()
         losses = {'train': [], 'val': []}
