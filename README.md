@@ -15,5 +15,5 @@ lossを下げることより中間層の次元圧縮を重視したためそこ�
 
 
 ### Pytorchでの結果
-![元画像](https://github.com/masudam/CAE/blob/master/result_torch/test_sample.png "元画像")![Pytorchによる生成画像（30epoch）](https://github.com/masudam/CAE/blob/master/result_tf2/image_at_epoch_0030.png "tensorflow2による生成画像（30epoch）")
+![元画像](https://github.com/masudam/CAE/blob/master/result_torch/test_sample.png "元画像")![Pytorchによる生成画像（30epoch）](https://github.com/masudam/CAE/blob/master/result_torch/image_at_epoch_0030.png "Pytorchによる生成画像（30epoch）")
 
