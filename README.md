@@ -1,1 +1,5 @@
 # CAE
+Convolutional Autoencoderをtensorflow2系とPytorchで実装してみた
+
+lossを下げることより中間層の次元圧縮を重視したためそこまで復元された画像はきれいではない。
+もし復元を重視するならbatch normalizationを加えたり、中間で線形層を入れずに複数次元のまま復元することで、lossがより下がるだろう。
