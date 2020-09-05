@@ -1,5 +1,5 @@
 # CAE
-Convolutional Autoencoderをtensorflow2系(2.1)とPytorchで実装してみた（python3.7）
+Convolutional Autoencoderをtensorflow2系(2.1)とPytorch(1.6.0)で実装してみた（python3.7）
 
 データセットは、それぞれのライブラリのコードで用意してくれるcifar10を使用しました。
 lossを下げることより中間層の次元圧縮を重視したためそこまで復元された画像はきれいではありませんが、実験など環境に多様性がない場合では十分だと思います（多分）。
