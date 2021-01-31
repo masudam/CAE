@@ -31,3 +31,6 @@ datasetは特別な型に従って作り、train phaseとval phaseに分けて�
 ### 元画像と生成画像
 ![元画像](https://github.com/masudam/CAE/blob/master/result_torch/test_sample.png "元画像")![Pytorchによる生成画像（30epoch）](https://github.com/masudam/CAE/blob/master/result_torch/image_at_epoch_0030.png "Pytorchによる生成画像（30epoch）")
 
+
+こちらも
+https://qiita.com/masudam/items/7f52e3761f649aa9d9fb
